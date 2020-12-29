@@ -40,7 +40,12 @@ public class ActivityController {
 
     @GetMapping()
     public ResponseEntity findAll() {
-        return ResponseEntity.ok(activityRepository.findAll());
+        return ResponseEntity.ok(activityRepository
+                .findAll()
+                .stream()
+                .map(ActivityDto::new)
+                .collect(Collectors.toList())
+        );
     }
 
     @GetMapping("/{date}")
