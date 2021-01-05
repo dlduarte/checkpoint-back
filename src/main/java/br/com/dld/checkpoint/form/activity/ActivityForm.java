@@ -34,7 +34,7 @@ public class ActivityForm {
     public Activity convert() {
         Activity activity = new Activity();
         activity.setCreation(LocalDateTime.now());
-        activity.setName(name);
+        activity.setName(name.trim().toUpperCase());
         activity.setType(type);
         activity.setReference(reference);
         activity.setEnded(ended);

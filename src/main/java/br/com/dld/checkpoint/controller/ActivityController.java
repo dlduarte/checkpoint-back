@@ -66,7 +66,6 @@ public class ActivityController {
 
             List<ActivityResumeDto> resume = list
                     .stream()
-                    .filter(object -> ActivityType.PAID == ActivityType.valueOf(String.valueOf(object[1])))
                     .map(ActivityResumeDto::new)
                     .collect(Collectors.toList());
 
@@ -75,15 +74,15 @@ public class ActivityController {
             summary.setWorked(LocalTime.MIN
                     .plusNanos(resume
                             .stream()
+                            .filter(activity -> ActivityType.PAID.equals(activity.getType()))
                             .map(ActivityResumeDto::getTotal)
                             .map(LocalTime::toNanoOfDay)
                             .reduce(0L, Long::sum))
             );
             summary.setStrayed(LocalTime.MIN
-                    .plusNanos(list
+                    .plusNanos(resume
                             .stream()
-                            .filter(object -> ActivityType.PAID != ActivityType.valueOf(String.valueOf(object[1])))
-                            .map(ActivityResumeDto::new)
+                            .filter(activity -> !ActivityType.PAID.equals(activity.getType()))
                             .map(ActivityResumeDto::getTotal)
                             .map(LocalTime::toNanoOfDay)
                             .reduce(0L, Long::sum))
