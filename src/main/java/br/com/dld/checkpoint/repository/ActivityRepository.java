@@ -23,7 +23,7 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
     List<Activity> findAllByReferenceOrderByCreation(LocalDate reference);
 
     @Query(nativeQuery = true,
-            value = "SELECT name, type, SEC_TO_TIME(SUM(TIME_TO_SEC(ended)) - SUM(TIME_TO_SEC(beginning))) AS total"
+            value = "SELECT name, type, reference, SEC_TO_TIME(SUM(TIME_TO_SEC(ended)) - SUM(TIME_TO_SEC(beginning))) AS total"
             + " FROM activity  WHERE reference = :reference GROUP BY name, type"
             + " ORDER BY FIELD(type, 'PAID', 'UNPAID', 'JUSTIFIED_ABSENCE', 'UNEXCUSED_ABSENCE'), beginning")
     List<Object[]> getSummary(@Param("reference") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate reference);
