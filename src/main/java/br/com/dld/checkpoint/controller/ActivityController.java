@@ -122,7 +122,7 @@ public class ActivityController {
     @Transactional
     public ResponseEntity update(@RequestBody @Valid UpdateActivityForm form) {
         try {
-            Optional<Activity> optActivity = activityRepository.findById(form.getActivityId());
+            Optional<Activity> optActivity = activityRepository.findById(form.getId());
 
             if (!optActivity.isPresent()) {
                 return ResponseEntity.notFound().build();
@@ -143,6 +143,8 @@ public class ActivityController {
             }
 
             activity.setEnded(form.getEnded());
+            activity.setName(form.getName().toUpperCase().trim());
+            activity.setType(form.getType());
             activityRepository.save(activity);
 
             return ResponseEntity.ok().build();

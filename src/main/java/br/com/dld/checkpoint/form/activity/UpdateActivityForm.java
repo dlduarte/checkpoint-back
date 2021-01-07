@@ -1,5 +1,7 @@
 package br.com.dld.checkpoint.form.activity;
 
+import br.com.dld.checkpoint.model.enums.ActivityType;
+import br.com.dld.checkpoint.serialization.enums.ValidEnumerated;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalTime;
 import javax.validation.constraints.NotNull;
@@ -9,20 +11,42 @@ import javax.validation.constraints.NotNull;
  * @author David Duarte
  */
 public class UpdateActivityForm {
-    
+
     @NotNull
-    private Long activityId;
-    
+    private Long id;
+
+    @NotNull
+    private String name;
+
+    @ValidEnumerated(enumClass = ActivityType.class)
+    private ActivityType type;
+
     @NotNull
     @JsonFormat(pattern = "HH:mm")
     private LocalTime ended;
 
-    public Long getActivityId() {
-        return activityId;
+    public Long getId() {
+        return id;
     }
 
-    public void setActivityId(Long activityId) {
-        this.activityId = activityId;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ActivityType getType() {
+        return type;
+    }
+
+    public void setType(ActivityType type) {
+        this.type = type;
     }
 
     public LocalTime getEnded() {
