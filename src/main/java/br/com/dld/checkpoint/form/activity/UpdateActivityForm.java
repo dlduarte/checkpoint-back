@@ -1,7 +1,7 @@
 package br.com.dld.checkpoint.form.activity;
 
 import br.com.dld.checkpoint.model.enums.ActivityType;
-import br.com.dld.checkpoint.serialization.enums.ValidEnumerated;
+import br.com.dld.checkpoint.serialization.enumerated.ValidEnumerated;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalTime;
 import javax.validation.constraints.NotNull;

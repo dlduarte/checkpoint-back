@@ -1,9 +1,10 @@
-
 package br.com.dld.checkpoint.dto.errors;
 
 import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
@@ -11,38 +12,50 @@ import java.util.logging.Logger;
  */
 public class ServerErrors {
 
-    private final String mensagem;
-    private final String tipo;
+    private final String message;
+    private final String className;
     private final String stackTrace;
-    
+
+    public static ResponseEntity build(Exception exception) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ServerErrors(exception));
+    }
+
+    public static ResponseEntity build(RuntimeException exception) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ServerErrors(exception));
+    }
+
     public ServerErrors(Exception exception) {
-        this.mensagem = exception.getMessage();
-        this.tipo = exception.getClass().getName();
+        this.message = exception.getMessage();
+        this.className = exception.getClass().getName();
         this.stackTrace = Arrays.toString(exception.getStackTrace());
-        
+
         try {
             Logger.getLogger(ServerErrors.class.getName()).log(Level.SEVERE, null, exception);
         } catch (Exception e) {
         }
     }
-    
+
     public ServerErrors(RuntimeException exception) {
-        this.mensagem = exception.getMessage();
-        this.tipo = exception.getClass().getName();
+        this.message = exception.getMessage();
+        this.className = exception.getClass().getName();
         this.stackTrace = Arrays.toString(exception.getStackTrace());
-        
+
         try {
             Logger.getLogger(ServerErrors.class.getName()).log(Level.SEVERE, null, exception);
         } catch (Exception e) {
         }
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public String getMessage() {
+        return message;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getClassName() {
+        return className;
     }
 
     public String getStackTrace() {

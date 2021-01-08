@@ -1,4 +1,4 @@
-package br.com.dld.checkpoint.serialization.enums;
+package br.com.dld.checkpoint.serialization.enumerated;
 
 import java.lang.annotation.Documented;
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;

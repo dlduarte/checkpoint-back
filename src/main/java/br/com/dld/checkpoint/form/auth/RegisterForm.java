@@ -1,11 +1,12 @@
-package br.com.dld.checkpoint.form;
+package br.com.dld.checkpoint.form.auth;
 
 import br.com.dld.checkpoint.model.Account;
+import br.com.dld.checkpoint.util.AuthenticationHandler;
+import br.com.dld.checkpoint.util.RandomString;
 import java.time.LocalDate;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  *
@@ -25,13 +26,14 @@ public class RegisterForm {
     @NotNull @NotEmpty
     private String password;
     
-    public Account convert() {
+    public Account convert() throws Exception {
         Account account = new Account();
         account.setName(name);
         account.setEmail(email);
         account.setUsername(username);
-        account.setPassword(new BCryptPasswordEncoder().encode(password));
+        account.setPassword(AuthenticationHandler.Password.encode(password));
         account.setCreationDate(LocalDate.now());
+        account.setActivationCode(RandomString.createAlphanumeric(20));
         
         return account;
     }

@@ -33,7 +33,7 @@ public class TokenService {
         Date expiracao = new Date(agora.getTime() + Long.parseLong(this.expiration));
 
         return Jwts.builder()
-                .setIssuer("API Rest Siemweb")
+                .setIssuer("Checkpoint API 1.0.0")
                 .setSubject(String.valueOf(credential.getAccount().getId()))
                 .setIssuedAt(agora)
                 .setExpiration(expiracao)

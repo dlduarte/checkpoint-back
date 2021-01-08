@@ -1,4 +1,4 @@
-package br.com.dld.checkpoint.serialization.enums;
+package br.com.dld.checkpoint.serialization.enumerated;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

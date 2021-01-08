@@ -2,7 +2,7 @@ package br.com.dld.checkpoint.form.activity;
 
 import br.com.dld.checkpoint.model.Activity;
 import br.com.dld.checkpoint.model.enums.ActivityType;
-import br.com.dld.checkpoint.serialization.enums.ValidEnumerated;
+import br.com.dld.checkpoint.serialization.enumerated.ValidEnumerated;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;

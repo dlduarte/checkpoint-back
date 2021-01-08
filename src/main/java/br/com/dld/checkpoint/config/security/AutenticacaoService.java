@@ -21,10 +21,14 @@ public class AutenticacaoService implements UserDetailsService {
     private AccountRepository accountRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String identification) throws UsernameNotFoundException {
 
-        Optional<Account> optAccount
-                = accountRepository.findByUsername(username);
+        Optional<Account> optAccount;
+        if (identification.contains("@")) {
+            optAccount = accountRepository.findByEmail(identification);
+        } else {
+            optAccount = accountRepository.findByUsername(identification);
+        }
 
         if (optAccount.isPresent()) {
             return new Credential(optAccount.get());

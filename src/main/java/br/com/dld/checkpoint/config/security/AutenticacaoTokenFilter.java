@@ -29,7 +29,7 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest hsr, HttpServletResponse hsr1, FilterChain fc) throws ServletException, IOException {
-        String token = recuperarToken(hsr);
+        String token = retrieveToken(hsr);
 
         if (tokenService.isTokenValido(token)) {
             autenticar(token);
@@ -38,7 +38,7 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
         fc.doFilter(hsr, hsr1);
     }
 
-    private String recuperarToken(HttpServletRequest hsr) {
+    private String retrieveToken(HttpServletRequest hsr) {
         String token = hsr.getHeader("Authorization");
 
         if (token == null || token.isEmpty() || !token.startsWith("Bearer ")) {
@@ -53,10 +53,8 @@ public class AutenticacaoTokenFilter extends OncePerRequestFilter {
         Optional<Account> optional = accountRepository.findById(id);
 
         if (optional.isPresent()) {
-            Account account = optional.get();
-
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    account,
+                    optional.get(),
                     null,
                     AuthorityUtils.createAuthorityList("Default")
             );

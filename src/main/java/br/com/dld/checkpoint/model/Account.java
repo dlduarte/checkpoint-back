@@ -45,7 +45,10 @@ public class Account implements Serializable {
     
     @Column
     private LocalDate creationDate;
-
+    
+    @Column(length = 20)
+    private String activationCode;
+    
     public Long getId() {
         return id;
     }
@@ -124,5 +127,13 @@ public class Account implements Serializable {
 
     public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getActivationCode() {
+        return activationCode;
+    }
+
+    public void setActivationCode(String activationCode) {
+        this.activationCode = activationCode;
     }
 }

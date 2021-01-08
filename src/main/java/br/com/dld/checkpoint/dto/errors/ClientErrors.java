@@ -1,5 +1,9 @@
-
 package br.com.dld.checkpoint.dto.errors;
+
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 /**
  *
@@ -7,21 +11,49 @@ package br.com.dld.checkpoint.dto.errors;
  */
 public class ClientErrors {
 
-    private final String mensagem;
-    
-    public ClientErrors(String message) {
-        this.mensagem = message;
-    }
-    
-    public ClientErrors(Exception exception) {
-        this.mensagem = exception.getMessage();
-    }
-    
-    public ClientErrors(RuntimeException exception) {
-        this.mensagem = exception.getMessage();
+    private final List<String> messages = new ArrayList();
+
+    public static ResponseEntity build(List<String> messages) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ClientErrors(messages));
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public static ResponseEntity build(String message) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ClientErrors(message));
+    }
+
+    public static ResponseEntity build(Exception exception) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ClientErrors(exception));
+    }
+
+    public static ResponseEntity build(RuntimeException exception) {
+        return ResponseEntity
+                .badRequest()
+                .body(new ClientErrors(exception));
+    }
+
+    public ClientErrors(List<String> message) {
+        this.messages.addAll(message);
+    }
+
+    public ClientErrors(String message) {
+        this.messages.add(message);
+    }
+
+    public ClientErrors(Exception exception) {
+        this.messages.add(exception.getMessage());
+    }
+
+    public ClientErrors(RuntimeException exception) {
+        this.messages.add(exception.getMessage());
+    }
+
+    public List<String> getMessages() {
+        return messages;
     }
 }

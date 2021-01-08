@@ -1,4 +1,4 @@
-package br.com.dld.checkpoint.dto.authentication;
+package br.com.dld.checkpoint.dto.auth;
 
 import java.time.LocalDateTime;
 
@@ -9,7 +9,11 @@ import java.time.LocalDateTime;
 public class AuthResponseDto {
     
     private LocalDateTime requestedIn = LocalDateTime.now();
-    private TokenDto token;
+    private String token;
+
+    public AuthResponseDto(String token) {
+        this.token = "Bearer " + token;
+    }
 
     public LocalDateTime getRequestedIn() {
         return requestedIn;
@@ -19,11 +23,11 @@ public class AuthResponseDto {
         this.requestedIn = requestedIn;
     }
 
-    public TokenDto getToken() {
+    public String getToken() {
         return token;
     }
 
-    public void setToken(TokenDto token) {
+    public void setToken(String token) {
         this.token = token;
     }
 }
