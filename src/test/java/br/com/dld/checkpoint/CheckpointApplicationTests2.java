@@ -1,10 +1,10 @@
-package br.com.dld.demo;
+package br.com.dld.checkpoint;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CheckpointApplicationTests {
+class CheckpointApplicationTests2 {
 
 	@Test
 	void contextLoads() {

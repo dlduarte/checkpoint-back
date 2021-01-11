@@ -1,5 +1,6 @@
 package br.com.dld.checkpoint.form.activity;
 
+import br.com.dld.checkpoint.model.Account;
 import br.com.dld.checkpoint.model.Activity;
 import br.com.dld.checkpoint.model.enums.ActivityType;
 import br.com.dld.checkpoint.serialization.enumerated.ValidEnumerated;
@@ -31,8 +32,9 @@ public class ActivityForm {
     @JsonFormat(pattern = "HH:mm")
     private LocalTime ended;
 
-    public Activity convert() {
+    public Activity convert(Account account) {
         Activity activity = new Activity();
+        activity.setAccountId(account);
         activity.setCreation(LocalDateTime.now());
         activity.setName(name.trim().toUpperCase());
         activity.setType(type);

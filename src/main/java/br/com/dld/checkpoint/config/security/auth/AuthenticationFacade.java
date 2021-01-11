@@ -16,7 +16,7 @@ public class AuthenticationFacade {
         return SecurityContextHolder.getContext().getAuthentication();
     }
 
-    public Account getAccountProduct() {
+    public Account getAccount() {
         return (Account) getAuthentication().getPrincipal();
     }
 }
