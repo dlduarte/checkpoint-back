@@ -45,9 +45,6 @@ public class AuthenticationService {
 
     @Autowired
     private RecoverPasswordRepository recoverPasswordRepository;
-    
-    @Autowired
-    private EmailService emailService;
 
     public AuthResponseDto authenticate(LoginForm form) throws Exception, RuntimeException {
         UsernamePasswordAuthenticationToken dadosLogin = form.converter();
@@ -81,13 +78,13 @@ public class AuthenticationService {
             email.setTitle("Checkpoint | Confirmação de conta");
             email.setContent("teste");
             email.setHtml(false);
-            
+
             HttpStatus status = EmailService.send(email);
-            
+
             if (!status.equals(HttpStatus.ACCEPTED)) {
                 throw new Exception("Falha no envio do email");
             }
-            
+
             return AuthenticationHandler.Email.mask(account.getEmail());
         }
 

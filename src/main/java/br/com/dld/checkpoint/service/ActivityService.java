@@ -75,7 +75,7 @@ public class ActivityService {
         Activity activity = form.convert(facade.getAccount());
 
         Optional<Activity> optActivity = activityRepository
-                .findFirstByAccountId_IdAndReferenceOrderByCreationDesc(facade.getAccount().getId(), LocalDate.now());
+                .findFirstByAccountId_IdAndReferenceOrderByCreationDesc(facade.getAccount().getId(), form.getReference());
 
         if (optActivity.isPresent()) {
             activity.setBeginning(optActivity
