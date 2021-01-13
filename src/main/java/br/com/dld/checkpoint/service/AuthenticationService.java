@@ -10,6 +10,8 @@ import br.com.dld.checkpoint.model.Account;
 import br.com.dld.checkpoint.model.RecoverPassword;
 import br.com.dld.checkpoint.repository.AccountRepository;
 import br.com.dld.checkpoint.repository.RecoverPasswordRepository;
+import br.com.dld.checkpoint.service.email.EmailService;
+import br.com.dld.checkpoint.service.email.dto.Email;
 import br.com.dld.checkpoint.util.AuthenticationHandler;
 import br.com.dld.checkpoint.util.RandomString;
 import java.time.LocalDateTime;
@@ -18,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -42,6 +45,9 @@ public class AuthenticationService {
 
     @Autowired
     private RecoverPasswordRepository recoverPasswordRepository;
+    
+    @Autowired
+    private EmailService emailService;
 
     public AuthResponseDto authenticate(LoginForm form) throws Exception, RuntimeException {
         UsernamePasswordAuthenticationToken dadosLogin = form.converter();
@@ -70,7 +76,18 @@ public class AuthenticationService {
 
             recoverPasswordRepository.saveAndFlush(recover);
 
-            /* >>> Fazer envio de email aqui <<< */
+            Email email = new Email();
+            email.setCredential(AuthenticationHandler.Email.credential());
+            email.setTitle("Checkpoint | Confirmação de conta");
+            email.setContent("teste");
+            email.setHtml(false);
+            
+            HttpStatus status = EmailService.send(email);
+            
+            if (!status.equals(HttpStatus.ACCEPTED)) {
+                throw new Exception("Falha no envio do email");
+            }
+            
             return AuthenticationHandler.Email.mask(account.getEmail());
         }
 

@@ -3,6 +3,7 @@ package br.com.dld.checkpoint.util;
 import br.com.dld.checkpoint.form.auth.RegisterForm;
 import br.com.dld.checkpoint.model.Account;
 import br.com.dld.checkpoint.repository.AccountRepository;
+import br.com.dld.checkpoint.service.email.dto.Credential;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -81,6 +82,19 @@ public class AuthenticationHandler {
     }
 
     public static class Email {
+
+        public static Credential credential() {
+            Credential credential = new Credential();
+            credential.setHost("smtp.gmail.com");
+            credential.setRequiresSSL(false);
+            credential.setRequiresTLS(true);
+            credential.setPort(587);
+            credential.setUsername("Checkpoint APP");
+            credential.setEmail("dldduarte.dev@gmail.com");
+            credential.setPassword("@David1995");
+
+            return credential;
+        }
 
         public static String mask(String email) {
             String[] split = email.split("@");
