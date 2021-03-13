@@ -1,9 +1,9 @@
 package br.com.dld.checkpoint.util;
 
-import br.com.dld.checkpoint.form.auth.RegisterForm;
-import br.com.dld.checkpoint.model.Account;
-import br.com.dld.checkpoint.repository.AccountRepository;
-import br.com.dld.checkpoint.service.email.dto.Credential;
+import br.com.dld.checkpoint.forms.auth.RegisterForm;
+import br.com.dld.checkpoint.entities.Account;
+import br.com.dld.checkpoint.repositories.AccountRepository;
+import br.com.dld.checkpoint.services.email.dto.Credential;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

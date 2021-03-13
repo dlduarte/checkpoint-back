@@ -1,43 +1,47 @@
-package br.com.dld.checkpoint.dto.activity;
+package br.com.dld.checkpoint.forms.activity;
 
+import br.com.dld.checkpoint.entities.Account;
 import br.com.dld.checkpoint.entities.Activity;
 import br.com.dld.checkpoint.entities.enums.ActivityType;
+import br.com.dld.checkpoint.serialization.enumerated.ValidEnumerated;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author David Duarte
  */
-public class ActivityDto {
+public class ActivityForm {
 
-    private Long id;
+    @NotNull
+    @NotEmpty
     private String name;
+
+    @ValidEnumerated(enumClass = ActivityType.class)
     private ActivityType type;
+
+    @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate reference;
-
-    @JsonFormat(pattern = "HH:mm")
-    private LocalTime beginning;
-
+    
+    @NotNull
     @JsonFormat(pattern = "HH:mm")
     private LocalTime ended;
 
-    public ActivityDto(Activity activity) {
-        this.id = activity.getId();
-        this.name = activity.getName();
-        this.type = activity.getType();
-        this.reference = activity.getReference();
-        this.beginning = activity.getBeginning();
-        this.ended = activity.getEnded();
-    }
+    public Activity convert(Account account) {
+        Activity activity = new Activity();
+        activity.setAccountId(account);
+        activity.setCreation(LocalDateTime.now());
+        activity.setName(name.trim().toUpperCase());
+        activity.setType(type);
+        activity.setReference(reference);
+        activity.setEnded(ended);
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        return activity;
     }
 
     public String getName() {
@@ -62,14 +66,6 @@ public class ActivityDto {
 
     public void setReference(LocalDate reference) {
         this.reference = reference;
-    }
-
-    public LocalTime getBeginning() {
-        return beginning;
-    }
-
-    public void setBeginning(LocalTime beginning) {
-        this.beginning = beginning;
     }
 
     public LocalTime getEnded() {

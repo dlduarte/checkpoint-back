@@ -1,8 +1,8 @@
 package br.com.dld.checkpoint.config.security;
 
 import br.com.dld.checkpoint.config.security.auth.Credential;
-import br.com.dld.checkpoint.model.Account;
-import br.com.dld.checkpoint.repository.AccountRepository;
+import br.com.dld.checkpoint.entities.Account;
+import br.com.dld.checkpoint.repositories.AccountRepository;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
 package br.com.dld.checkpoint.config.security.auth;
 
-import br.com.dld.checkpoint.model.Account;
+import br.com.dld.checkpoint.entities.Account;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;

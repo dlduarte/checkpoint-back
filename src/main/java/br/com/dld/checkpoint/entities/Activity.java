@@ -1,36 +1,53 @@
-package br.com.dld.checkpoint.dto.activity;
+package br.com.dld.checkpoint.entities;
 
-import br.com.dld.checkpoint.entities.Activity;
 import br.com.dld.checkpoint.entities.enums.ActivityType;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author David Duarte
  */
-public class ActivityDto {
+@Entity
+public class Activity implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
     private String name;
+
+    @Enumerated(EnumType.STRING)
     private ActivityType type;
+
+    @Column
     private LocalDate reference;
 
-    @JsonFormat(pattern = "HH:mm")
+    @Column
     private LocalTime beginning;
 
-    @JsonFormat(pattern = "HH:mm")
+    @Column
     private LocalTime ended;
 
-    public ActivityDto(Activity activity) {
-        this.id = activity.getId();
-        this.name = activity.getName();
-        this.type = activity.getType();
-        this.reference = activity.getReference();
-        this.beginning = activity.getBeginning();
-        this.ended = activity.getEnded();
-    }
+    @Column
+    private LocalDateTime creation;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "accountId")
+    private Account accountId;
 
     public Long getId() {
         return id;
@@ -78,5 +95,21 @@ public class ActivityDto {
 
     public void setEnded(LocalTime ended) {
         this.ended = ended;
+    }
+
+    public LocalDateTime getCreation() {
+        return creation;
+    }
+
+    public void setCreation(LocalDateTime creation) {
+        this.creation = creation;
+    }
+
+    public Account getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Account accountId) {
+        this.accountId = accountId;
     }
 }

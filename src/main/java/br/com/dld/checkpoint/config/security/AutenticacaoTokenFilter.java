@@ -1,7 +1,7 @@
 package br.com.dld.checkpoint.config.security;
 
-import br.com.dld.checkpoint.model.Account;
-import br.com.dld.checkpoint.repository.AccountRepository;
+import br.com.dld.checkpoint.entities.Account;
+import br.com.dld.checkpoint.repositories.AccountRepository;
 import java.io.IOException;
 import java.util.Optional;
 import javax.servlet.FilterChain;

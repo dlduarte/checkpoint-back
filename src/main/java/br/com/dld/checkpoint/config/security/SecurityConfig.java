@@ -1,6 +1,6 @@
 package br.com.dld.checkpoint.config.security;
 
-import br.com.dld.checkpoint.repository.AccountRepository;
+import br.com.dld.checkpoint.repositories.AccountRepository;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

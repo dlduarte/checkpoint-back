@@ -1,6 +1,6 @@
 package br.com.dld.checkpoint.config.security.auth;
 
-import br.com.dld.checkpoint.model.Account;
+import br.com.dld.checkpoint.entities.Account;
 import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
