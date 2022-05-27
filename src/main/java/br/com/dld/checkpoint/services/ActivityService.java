@@ -1,15 +1,15 @@
 package br.com.dld.checkpoint.services;
 
-import br.com.dld.checkpoint.config.security.auth.AuthenticationFacade;
-import br.com.dld.checkpoint.dto.activity.ActivityDto;
-import br.com.dld.checkpoint.dto.activity.ActivityResumeDto;
-import br.com.dld.checkpoint.dto.activity.ActivitySummaryDto;
-import br.com.dld.checkpoint.entities.Activity;
-import br.com.dld.checkpoint.entities.Setting;
-import br.com.dld.checkpoint.entities.enums.ActivityType;
-import br.com.dld.checkpoint.entities.enums.SettingKey;
-import br.com.dld.checkpoint.forms.activity.ActivityForm;
-import br.com.dld.checkpoint.forms.activity.UpdateActivityForm;
+import br.com.dld.checkpoint.configs.security.auth.AuthenticationFacade;
+import br.com.dld.checkpoint.models.dtos.activity.ActivityDto;
+import br.com.dld.checkpoint.models.dtos.activity.ActivityResumeDto;
+import br.com.dld.checkpoint.models.dtos.activity.ActivitySummaryDto;
+import br.com.dld.checkpoint.models.entities.Activity;
+import br.com.dld.checkpoint.models.entities.Setting;
+import br.com.dld.checkpoint.models.enums.ActivityType;
+import br.com.dld.checkpoint.models.enums.SettingKey;
+import br.com.dld.checkpoint.models.forms.activity.ActivityForm;
+import br.com.dld.checkpoint.models.forms.activity.UpdateActivityForm;
 import br.com.dld.checkpoint.repositories.ActivityRepository;
 import java.time.LocalDate;
 import java.time.LocalTime;

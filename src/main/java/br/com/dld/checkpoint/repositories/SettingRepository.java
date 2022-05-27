@@ -1,7 +1,7 @@
 package br.com.dld.checkpoint.repositories;
 
-import br.com.dld.checkpoint.entities.Setting;
-import br.com.dld.checkpoint.entities.enums.SettingKey;
+import br.com.dld.checkpoint.models.entities.Setting;
+import br.com.dld.checkpoint.models.enums.SettingKey;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;

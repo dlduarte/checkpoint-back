@@ -1,13 +1,13 @@
 package br.com.dld.checkpoint.services;
 
-import br.com.dld.checkpoint.config.security.TokenService;
-import br.com.dld.checkpoint.dto.auth.AuthResponseDto;
-import br.com.dld.checkpoint.forms.auth.EnableForm;
-import br.com.dld.checkpoint.forms.auth.LoginForm;
-import br.com.dld.checkpoint.forms.auth.RecoverForm;
-import br.com.dld.checkpoint.forms.auth.RegisterForm;
-import br.com.dld.checkpoint.entities.Account;
-import br.com.dld.checkpoint.entities.RecoverPassword;
+import br.com.dld.checkpoint.configs.security.TokenService;
+import br.com.dld.checkpoint.models.dtos.auth.AuthResponseDto;
+import br.com.dld.checkpoint.models.forms.auth.EnableForm;
+import br.com.dld.checkpoint.models.forms.auth.LoginForm;
+import br.com.dld.checkpoint.models.forms.auth.RecoverForm;
+import br.com.dld.checkpoint.models.forms.auth.RegisterForm;
+import br.com.dld.checkpoint.models.entities.Account;
+import br.com.dld.checkpoint.models.entities.RecoverPassword;
 import br.com.dld.checkpoint.repositories.AccountRepository;
 import br.com.dld.checkpoint.repositories.RecoverPasswordRepository;
 import br.com.dld.checkpoint.services.email.EmailService;

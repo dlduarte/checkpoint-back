@@ -1,9 +1,10 @@
 package br.com.dld.checkpoint.resources;
 
-import br.com.dld.checkpoint.dto.errors.ClientErrors;
-import br.com.dld.checkpoint.dto.errors.ServerErrors;
-import br.com.dld.checkpoint.forms.activity.ActivityForm;
-import br.com.dld.checkpoint.forms.activity.UpdateActivityForm;
+import br.com.dld.checkpoint.models.dtos.activity.ActivityDto;
+import br.com.dld.checkpoint.models.dtos.errors.ClientErrors;
+import br.com.dld.checkpoint.models.dtos.errors.ServerErrors;
+import br.com.dld.checkpoint.models.forms.activity.ActivityForm;
+import br.com.dld.checkpoint.models.forms.activity.UpdateActivityForm;
 import br.com.dld.checkpoint.services.ActivityService;
 import java.time.LocalDate;
 import javax.validation.Valid;
@@ -32,7 +33,7 @@ public class ActivityResource {
     private ActivityService service;
 
     @GetMapping("/{date}")
-    public ResponseEntity find(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+    public ResponseEntity<?> find(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         try {
             return ResponseEntity.ok(service.find(date));
         } catch (Exception e) {
@@ -41,7 +42,7 @@ public class ActivityResource {
     }
 
     @GetMapping("/summary/{date}")
-    public ResponseEntity summary(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
+    public ResponseEntity<?> summary(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         try {
             return ResponseEntity.ok(service.summary(date));
         } catch (Exception e) {
@@ -50,7 +51,7 @@ public class ActivityResource {
     }
 
     @PostMapping()
-    public ResponseEntity save(@RequestBody @Valid ActivityForm form) {
+    public ResponseEntity<?> save(@RequestBody @Valid ActivityForm form) {
         try {
             return ResponseEntity.ok(service.save(form));
         } catch (Exception e) {
@@ -59,7 +60,7 @@ public class ActivityResource {
     }
 
     @PutMapping()
-    public ResponseEntity update(@RequestBody @Valid UpdateActivityForm form) {
+    public ResponseEntity<?> update(@RequestBody @Valid UpdateActivityForm form) {
         try {
             String error = service.update(form);
 

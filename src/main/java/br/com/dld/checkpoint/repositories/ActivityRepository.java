@@ -1,6 +1,6 @@
 package br.com.dld.checkpoint.repositories;
 
-import br.com.dld.checkpoint.entities.Activity;
+import br.com.dld.checkpoint.models.entities.Activity;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;

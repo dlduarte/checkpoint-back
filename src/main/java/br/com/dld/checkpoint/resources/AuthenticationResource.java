@@ -1,12 +1,12 @@
 package br.com.dld.checkpoint.resources;
 
-import br.com.dld.checkpoint.dto.auth.RecoveryResponseDto;
-import br.com.dld.checkpoint.dto.errors.ClientErrors;
-import br.com.dld.checkpoint.dto.errors.ServerErrors;
-import br.com.dld.checkpoint.forms.auth.EnableForm;
-import br.com.dld.checkpoint.forms.auth.LoginForm;
-import br.com.dld.checkpoint.forms.auth.RecoverForm;
-import br.com.dld.checkpoint.forms.auth.RegisterForm;
+import br.com.dld.checkpoint.models.dtos.auth.RecoveryResponseDto;
+import br.com.dld.checkpoint.models.dtos.errors.ClientErrors;
+import br.com.dld.checkpoint.models.dtos.errors.ServerErrors;
+import br.com.dld.checkpoint.models.forms.auth.EnableForm;
+import br.com.dld.checkpoint.models.forms.auth.LoginForm;
+import br.com.dld.checkpoint.models.forms.auth.RecoverForm;
+import br.com.dld.checkpoint.models.forms.auth.RegisterForm;
 import br.com.dld.checkpoint.services.AuthenticationService;
 import java.util.List;
 import javax.validation.Valid;

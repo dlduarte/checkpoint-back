@@ -1,6 +1,6 @@
 package br.com.dld.checkpoint.repositories;
 
-import br.com.dld.checkpoint.entities.Account;
+import br.com.dld.checkpoint.models.entities.Account;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

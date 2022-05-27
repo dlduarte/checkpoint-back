@@ -1,10 +1,10 @@
 package br.com.dld.checkpoint.services;
 
-import br.com.dld.checkpoint.config.security.auth.AuthenticationFacade;
-import br.com.dld.checkpoint.dto.setting.SettingDto;
-import br.com.dld.checkpoint.entities.Setting;
-import br.com.dld.checkpoint.entities.enums.SettingKey;
-import br.com.dld.checkpoint.forms.setting.SettingForm;
+import br.com.dld.checkpoint.configs.security.auth.AuthenticationFacade;
+import br.com.dld.checkpoint.models.dtos.setting.SettingDto;
+import br.com.dld.checkpoint.models.entities.Setting;
+import br.com.dld.checkpoint.models.enums.SettingKey;
+import br.com.dld.checkpoint.models.forms.setting.SettingForm;
 import br.com.dld.checkpoint.repositories.SettingRepository;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class SettingService {
     @Autowired
     private SettingRepository settingsRepository;
 
-    public List<SettingDto> findAll() throws Exception, RuntimeException {
+    public List<SettingDto> findAll() {
 
         List<Setting> realList = settingsRepository
                 .findAllByAccountId_Id(facade
@@ -35,7 +35,7 @@ public class SettingService {
                         .getId()
                 );
 
-        List<Setting> list = new ArrayList();
+        List<Setting> list = new ArrayList<>();
         for (SettingKey s : SettingKey.values()) {
             Optional<Setting> optional = realList
                     .stream()
@@ -61,7 +61,7 @@ public class SettingService {
                 .collect(Collectors.toList());
     }
 
-    public Optional<Setting> find(SettingKey settings) throws Exception, RuntimeException {
+    public Optional<Setting> find(SettingKey settings) {
         return settingsRepository
                 .findByAccountId_IdAndSettingKey(facade
                         .getAccount()
@@ -71,7 +71,7 @@ public class SettingService {
     }
 
     @Transactional
-    public Setting save(SettingForm form) throws Exception, RuntimeException {
+    public Setting save(SettingForm form) {
 
         Optional<Setting> optSetting = find(form.getKey());
 

@@ -1,6 +1,6 @@
 package br.com.dld.checkpoint.repositories;
 
-import br.com.dld.checkpoint.entities.RecoverPassword;
+import br.com.dld.checkpoint.models.entities.RecoverPassword;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
